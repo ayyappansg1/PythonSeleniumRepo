@@ -32,12 +32,12 @@ jobs:
       - name: Install dependencies
         run: |
           python -m venv venv  # Create virtual environment
-          .\venv\Scripts\Activate.ps1  # Activate virtual environment in PowerShell
+          D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\Activate.ps1  # Use full path if needed
           echo "Virtual Environment Activated"
-          .\venv\Scripts\python --version  # Print Python version for verification
-          .\venv\Scripts\python -m pip --version
-          .\venv\Scripts\python -m pip install --upgrade pip -v  # Upgrade pip with verbose output
-          .\venv\Scripts\python -m pip install -r requirements.txt -v  # Install dependencies with verbose output
+          D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\python --version  # Full path to Python version check
+          D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\python -m pip --version  # Check pip version
+          D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\python -m pip install --upgrade pip -v  # Upgrade pip with verbose output
+          D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\python -m pip install -r requirements.txt -v  # Install dependencies
         shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
         env:
           pythonLocation: C:\hostedtoolcache\windows\Python\3.12.8\x64
