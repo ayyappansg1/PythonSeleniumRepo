@@ -33,7 +33,7 @@ jobs:
         run: |
           echo "Checking if Activate.ps1 exists"
           python -m venv venv  # Create virtual environment
-          venv\Scripts\Activate.ps1"  # Activate virtual environment using full path
+          venv\Scripts\Activate.ps1 # Activate virtual environment using full path
           echo "Virtual Environment Activated"
           & "D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\python" --version  # Full path to Python version check
           & "D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\python" -m pip --version  # Check pip version
