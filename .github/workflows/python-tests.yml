@@ -15,6 +15,10 @@ jobs:
 
     steps:
       # Checkout the repository code
+      - name: Set PowerShell Execution Policy
+        run: |
+          Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process -Force
+
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -33,9 +37,12 @@ jobs:
       # Run pytest
       - name: Run pytest tests
         run: |
-          .\venv\Scripts\python -c "import sys; print(sys.executable)"  # Print Python executable path
+          .\venv\Scripts\python -c "import sys; print(sys.executable)"  # Check Python executable location
+          .\venv\Scripts\python -m pip --version  # Check pip version
           .\venv\Scripts\python -m pytest -n 10 --browser_name=chrome --alluredir=allure-results --html=report.html
-
+      - name: Check if requirements.txt is available
+        run: |
+          dir
       # Upload Allure results as artifacts (optional)
       - name: Upload Allure results
         uses: actions/upload-artifact@v3
