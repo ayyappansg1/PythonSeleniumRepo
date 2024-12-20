@@ -11,6 +11,6 @@ assets/
 
 # Ignore log files
 *.log
-
+*.png
 # Ignore all files in temp directories
 temp/
