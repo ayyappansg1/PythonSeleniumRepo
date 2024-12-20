@@ -36,10 +36,15 @@ jobs:
           echo "Virtual Environment Activated"
           python --version  # Print Python version for verification
           .\venv\Scripts\python -m pip --version
-          pip --version  # Check pip version for debugging
-          pip install --upgrade pip -v  # Upgrade pip with verbose output
-          pip install -r requirements.txt -v  # Install dependencies with verbose output
-        shell: pwsh
+          .\venv\Scripts\python -m pip install --upgrade pip -v  # Upgrade pip with verbose output
+          .\venv\Scripts\python -m pip install -r requirements.txt -v  # Install dependencies with verbose output
+        shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
+        env:
+          pythonLocation: C:\hostedtoolcache\windows\Python\3.12.8\x64
+          PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.8\x64/lib/pkgconfig
+          Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.8\x64
+          Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.8\x64
+          Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.8\x64
 
       # Run pytest
       - name: Run pytest tests
