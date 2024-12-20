@@ -33,8 +33,11 @@ jobs:
         run: |
           python -m venv venv  # Create virtual environment
           .\venv\Scripts\Activate.ps1  # Activate virtual environment in PowerShell
-          pip install --upgrade pip -v # Upgrade pip
-          pip install -r requirements.txt -v # Install dependencies from requirements.txt
+          echo "Virtual Environment Activated"
+          python --version  # Print Python version for verification
+          pip --version  # Check pip version for debugging
+          pip install --upgrade pip -v  # Upgrade pip with verbose output
+          pip install -r requirements.txt -v  # Install dependencies with verbose output
         shell: pwsh
 
       # Run pytest
