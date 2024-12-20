@@ -35,6 +35,7 @@ jobs:
           .\venv\Scripts\Activate.ps1  # Activate virtual environment in PowerShell
           echo "Virtual Environment Activated"
           python --version  # Print Python version for verification
+          .\venv\Scripts\python -m pip --version
           pip --version  # Check pip version for debugging
           pip install --upgrade pip -v  # Upgrade pip with verbose output
           pip install -r requirements.txt -v  # Install dependencies with verbose output
