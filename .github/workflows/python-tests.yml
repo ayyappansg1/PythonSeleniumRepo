@@ -32,21 +32,20 @@ jobs:
       - name: Install dependencies
         run: |
           echo "Checking if Activate.ps1 exists"
-          dir "D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\Activate.ps1"
           python -m venv venv  # Create virtual environment
-          & "D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\Activate.ps1"  # Activate virtual environment using full path
+          venv\Scripts\Activate.ps1"  # Activate virtual environment using full path
           echo "Virtual Environment Activated"
           & "D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\python" --version  # Full path to Python version check
           & "D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\python" -m pip --version  # Check pip version
           & "D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\python" -m pip install --upgrade pip -v  # Upgrade pip with verbose output
           & "D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\python" -m pip install -r requirements.txt -v  # Install dependencies
-        shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
-        env:
-          pythonLocation: C:\hostedtoolcache\windows\Python\3.12.8\x64
-          PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.8\x64/lib/pkgconfig
-          Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.8\x64
-          Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.8\x64
-          Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.8\x64
+        shell: pwsh
+#        env:
+#          pythonLocation: C:\hostedtoolcache\windows\Python\3.12.8\x64
+#          PKG_CONFIG_PATH: C:\hostedtoolcache\windows\Python\3.12.8\x64/lib/pkgconfig
+#          Python_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.8\x64
+#          Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.8\x64
+#          Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.12.8\x64
 
       # Run pytest
       - name: Run pytest tests
