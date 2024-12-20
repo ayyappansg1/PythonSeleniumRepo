@@ -31,6 +31,8 @@ jobs:
           if (Test-Path "requirements.txt") { Write-Host "requirements.txt found"; } else { Write-Host "requirements.txt not found"; exit 1; }
       - name: Install dependencies
         run: |
+          echo "Checking if Activate.ps1 exists"
+          dir "D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\Activate.ps1"
           python -m venv venv  # Create virtual environment
           & "D:\a\PythonSeleniumRepo\PythonSeleniumRepo\venv\Scripts\Activate.ps1"  # Activate virtual environment using full path
           echo "Virtual Environment Activated"
