@@ -1,0 +1,14 @@
+jsonschema==4.23.0
+jsonpath-ng==1.7.0
+allure-pytest==2.13.5
+PyAutoGUI==0.9.54
+Faker==33.1.0
+pip==24.3.1
+pyperclip==1.9.0
+pytest==8.3.4
+pytest-html==4.1.1
+pytest-xdist==3.6.1
+requests==2.32.3
+selenium==4.27.1
+selenium-wire==5.1.0
+webdriver-manager==4.0.2

@@ -1,0 +1,16 @@
+# Ignore node_modules directory
+node_modules/
+.idea/
+.pytest_cache/
+allure-report/
+allure-results/
+assets/
+*.html
+# Ignore Python compiled files
+*.pyc
+
+# Ignore log files
+*.log
+
+# Ignore all files in temp directories
+temp/
