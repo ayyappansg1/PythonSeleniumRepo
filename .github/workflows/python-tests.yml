@@ -26,7 +26,9 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-
+      - name: Check if requirements.txt is available
+        run: |
+          dir
       - name: Install dependencies
         run: |
           python -m venv venv  # Create virtual environment
@@ -40,9 +42,7 @@ jobs:
           .\venv\Scripts\python -c "import sys; print(sys.executable)"  # Check Python executable location
           .\venv\Scripts\python -m pip --version  # Check pip version
           .\venv\Scripts\python -m pytest -n 10 --browser_name=chrome --alluredir=allure-results --html=report.html
-      - name: Check if requirements.txt is available
-        run: |
-          dir
+
       # Upload Allure results as artifacts (optional)
       - name: Upload Allure results
         uses: actions/upload-artifact@v3
