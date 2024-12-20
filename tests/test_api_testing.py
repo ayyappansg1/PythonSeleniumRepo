@@ -89,6 +89,8 @@ class TestingAPI:
         serialisedPayload = serialisedData(Payload)
         response = requests.post(f"{self.BASE_URL}/products", headers=headers1, data=serialisedPayload)
         logger.info(response.status_code)
+        logger.info(response.text)
+
 
     def serialisedData(self, response):
         return json.dumps(response.json())
