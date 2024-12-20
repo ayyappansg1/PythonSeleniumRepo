@@ -26,15 +26,16 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-      - name: Check if requirements.txt is available
+      - name: Verify requirements.txt exists
         run: |
-          dir
+          if (Test-Path "requirements.txt") { Write-Host "requirements.txt found"; } else { Write-Host "requirements.txt not found"; exit 1; }
       - name: Install dependencies
         run: |
           python -m venv venv  # Create virtual environment
-          .\venv\Scripts\Activate.ps1  # Activate virtual environment for PowerShell
-          pip install --upgrade pip  # Upgrade pip
-          pip install -r requirements.txt  # Install dependencies from requirements.txt
+          .\venv\Scripts\Activate.ps1  # Activate virtual environment in PowerShell
+          pip install --upgrade pip -v # Upgrade pip
+          pip install -r requirements.txt -v # Install dependencies from requirements.txt
+        shell: pwsh
 
       # Run pytest
       - name: Run pytest tests
