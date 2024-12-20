@@ -1,0 +1,44 @@
+trigger:
+  branches:
+    include:
+      - master  # Adjust as per your branch structure
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  pythonVersion: '3.x'
+
+steps:
+          
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: $(pythonVersion)
+    addToPath: true
+
+- task: Checkout@1
+  displayName: 'Checkout source code'
+
+- script: |
+    python -m venv venv  # Create virtual environment
+    source venv/bin/activate  # Activate virtual environment
+    pip install --upgrade pip  # Upgrade pip
+    pip install -r requirements.txt  # Install dependencies
+  displayName: 'Install dependencies'
+
+- script: |
+    source venv/bin/activate  # Activate virtual environment (if not already activated)
+    pytest -n 5 --alluredir=allure-results --html=report.html  # Run the test suite
+  displayName: 'Run pytest tests'
+
+- task: PublishBuildArtifacts@1  # Publish test results as build artifacts
+  inputs:
+    PathtoPublish: 'allure-results'  # Folder to store Allure test results
+    ArtifactName: 'AllureReports'
+    publishLocation: 'Container'
+
+- task: PublishBuildArtifacts@1  # Publish HTML report for review
+  inputs:
+    PathtoPublish: 'report.html'  # HTML report file
+    ArtifactName: 'TestReports'
+    publishLocation: 'Container'

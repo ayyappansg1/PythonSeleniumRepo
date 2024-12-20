@@ -6,10 +6,11 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 
 
-@pytest.fixture(scope="class", autouse=True)
+@pytest.fixture(scope="class", autouse=True, params=["chrome", "edge", "firefox"])
 def setup(request):
     global driver
-    browser_name = request.config.getoption("--browser_name")
+    #browser_name = request.config.getoption("--browser_name")
+    browser_name = request.param
     if browser_name == "chrome":
         serviceObj = Service(ChromeDriverManager().install())
         driver = webdriver.Chrome(service=serviceObj)
@@ -33,6 +34,7 @@ def launchApplication():
 
 def pytest_addoption(parser):
     parser.addoption("--browser_name", action="store", default="chrome")
+
 
 def _capture_screenshot(file_name):
     driver.get_screenshot_as_file(file_name)
@@ -59,6 +61,3 @@ def pytest_runtest_makereport(item):
                 html = '<div><img src="%s" alt="screenshot" style="width:304px;height:228px" onclick="window.open(this.src)" align="right"/></div>' % filename
                 extra.append(pytest_html.extras.html(html))
     report.extra = extra
-
-
-
